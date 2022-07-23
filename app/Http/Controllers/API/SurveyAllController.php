@@ -14,7 +14,8 @@ class SurveyAllController extends Controller
      */
     public function index()
     {
-        //      
+           $surveyalls = SurveyAll::all();
+           return response()->json($surveyalls);
     }
 
     /**
@@ -25,7 +26,13 @@ class SurveyAllController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'purpose' => 'required',
+            'date_push' => new date,
+        ]);
+        SurvayAll::create($request->all());
+        return response('le survey est ajouter ', 200);
     }
 
     /**
@@ -60,5 +67,14 @@ class SurveyAllController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function addQuestion($id,Request $request){
+        $request->validate([
+            'question'=> 'required'
+            // 'purpose'=> 'required'
+        ]);
+        $surveyall = SurveyAll::find($id);
+        $survey->surveys()->create($request);
+        
     }
 }

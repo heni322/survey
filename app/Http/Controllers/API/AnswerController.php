@@ -55,7 +55,8 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::findOrFail($id);
+        $answer->update($request->all());
     }
 
     /**
@@ -66,6 +67,6 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Answer::delete($id);
     }
 }

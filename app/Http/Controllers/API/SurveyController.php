@@ -75,7 +75,7 @@ class SurveyController extends Controller
         $request->validate([
             'response' => 'required',
         ]);
-        $survey = Survey::find($id);
+        $survey = Survey::findOrFail($id);
         $survey->answers()->create($request);
     }
 }
